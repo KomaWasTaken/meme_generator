@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="www/css/materialize.min.css">
+    <link rel="stylesheet" href="www/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <title> Cine Allo</title>
+</head>
+<body>
+    <header>
+        <nav class="grey darken-4">
+            <div class="nav-wrapper container">
+                <img class="m-mleft logo" src="www/images/logo.png" href="index.php" alt="logo">
+                <a href="index.php" class="title-nav red-text font-bold m-logoleft">CINE ALLO</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down m-mright">
+                <li><a class="white-text font-norm" href="#">80'</a></li>
+                <li><a class="white-text font-norm" href="#">90'</a></li>
+                <li><a class="white-text font-norm" href="#">2000'</a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="grey darken-4 container">
+        <div class="nav-wrapper">
+            <form>
+            <div class="input-field">
+                <input id="search" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+            </form>
+        </div>
+        </nav>
+    </header>
+
+    <main class="grey darken-4 white-text">
+
+        {% for film in films %}
+        <div class="row">
+            <div class="card col s12 m2">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator img-cards" src="{{ film.fil_affiche }}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ film.fil_titre }}<i class="material-icons right">more_vert</i></span>
+                <p><a href="#">This is a link</a></p>
+                <a class="waves-effect waves-light btn-small" href="film/{{ film.slug }}">En savoir plus</a>   
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+
+    <script src="www/js/slider.js"></script>
+    <script src="../../materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href=".././www/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href=".././www/css/style.css">
+
+    <title> {{ film.fil_titre }} </title>
+</head>
+<body class="grey darken-4 roboto">
+    <header class="container">
+        <nav class="grey darken-4 nav-wrapper noshadow">
+                <a href="./../index.php"><img class="m-mleft logo" src="../www/images/logo.png" alt="logo"></a>
+                <a href="./../index.php" class="title-nav red-text font-bold m-logoleft">CINE ALLO</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down m-mright">
+                <li><a class="white-text font-norm" href="#">80'</a></li>
+                <li><a class="white-text font-norm" href="#">90'</a></li>
+                <li><a class="white-text font-norm" href="#">2000'</a></li>
+                </ul>
+        </nav>
+        <nav class="grey darken-4 noshadow nav-wrapper">
+            <form>
+            <div class="input-field">
+                <input id="search" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">Recherche</i></label>
+                <i class="material-icons">Fermer</i>
+            </div>
+            </form>
+        </nav>
+    </header>
+    <main class="grey darken-4 white-text container">
+        <h1 class="row"> {{ film.fil_titre }} </h1>
+
+        <div class="row fs20 txtjustify">
+            <div >
+                <img class="col m3 s12" src="{{ film.fil_affiche }}">
+            </div>
+                <div class="container col m9">
+                    <div class="row">
+                        <p class="col s12">Année de sortie : {{ film.fil_annee }} </p>
+                        <p class="col s12">Réalisateur : 
+                            {% if realisateur|length > 0 %}     
+                                {% for real in realisateur %}       
+                                    {{ real.rea_prenom }} {{ real.rea_nom }} {% if loop.last == false %} / {% endif %}
+                                    {% endfor %}
+
+                            {% else %}
+                                    -
+                            {% endif %}
+
+                        <p class="col s12">Genres :
+                            {% if genres|length > 0 %} 
+                                {% for genre in genres %}
+                                    {{ genre.gen_type }} {% if loop.last == false %} / {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </p>
+                        <p class="col s12"> Synopsis : <br>
+                            {{ film.fil_description }} </p>
+                    </div>
+                </div>
+        
+        </div>
+</body>
+</html>
