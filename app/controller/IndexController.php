@@ -3,19 +3,12 @@
 class IndexController extends Controller {
    
    public function display() {
-      $films = Film::getList();
-      //$this->view->display();
+      $memes = Gallery::getMemes();
 
-      require_once 'vendor/autoload.php';
 
-        $loader = new Twig_Loader_Filesystem('app/view');
-        $twig = new Twig_Environment($loader, array(
-            'cache' => false
-        ));
-
-        $template = $twig->loadTemplate('/Index/display.html.twig');
+        $template = $this->twig->loadTemplate('/Index/display.html.twig');
         echo $template->render(array(
-            'films'  => $films
+            'memes'  => $memes
         ));
 
    }

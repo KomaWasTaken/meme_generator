@@ -13,7 +13,7 @@ class Database {
    protected function __construct() {
       // A faire : fichier de config
       $this->_db = new PDO(
-         "mysql:host=localhost;dbname=annuairefilms;charset=utf8",
+         "mysql:host=localhost;dbname=project_memes;charset=utf8",
          "root",
          ""
       );
