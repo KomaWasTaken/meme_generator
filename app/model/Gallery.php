@@ -25,4 +25,10 @@ class Gallery extends Model {
 
    }
 
+   /* public static function getUploads() {
+        $db = Database::getInstance();
+        $sql = "INSERT INTO ";
+        $stmt = $db->query($sql);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(); */
 }
