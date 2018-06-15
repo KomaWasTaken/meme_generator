@@ -6,8 +6,6 @@ require_once 'vendor/autoload.php';
 class Controller {
     protected $route;
     protected $view;
-    public $twig;
-
    
    public function __construct( $route ) {
         $this->route = $route;

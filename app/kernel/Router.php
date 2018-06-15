@@ -13,8 +13,8 @@ class Router {
          $result["action"] = "display";
       } else {
          $parts = explode("/", $query);
-         if($parts[0] == "meme" && count($parts) == 2) {
-            $result["controller"] = "meme";
+         if($parts[0] == "Index" && count($parts) == 2) {
+            $result["controller"] = "Index";
             $result["action"] = "display";
             $result["params"]["slug"] = $parts[1];            
          }

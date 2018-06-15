@@ -3,12 +3,15 @@
 class IndexController extends Controller {
 
     public function UploadMemes(){
+
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+   
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
@@ -17,7 +20,7 @@ class IndexController extends Controller {
             echo "File is not an image.";
             $uploadOk = 0;
         }
-    }
+    
     // Check if file already exists
     if (file_exists($target_file)) {
         echo "Sorry, file already exists.";
@@ -30,8 +33,8 @@ class IndexController extends Controller {
     }
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+     ) {
+        echo "Sorry, only JPG, JPEG & PNG files are allowed.";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
@@ -44,8 +47,8 @@ class IndexController extends Controller {
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
-    
     }
+}
     
     /* header("Content-Type: image/png");
     $im = @imagecreate(110, 20)
@@ -60,13 +63,14 @@ class IndexController extends Controller {
     
 }
 
-   public function display() {
-      $memes = Gallery::getMemes();
-
+    public function display() {
+        $memes = Gallery::getMemes();
+        $upload = IndexController::UploadMemes();
 
         $template = $this->twig->loadTemplate('/Index/display.html.twig');
         echo $template->render(array(
-            'memes'  => $memes
+            'memes'  => $memes,
+            'upload' => $upload
         ));
 
    }
