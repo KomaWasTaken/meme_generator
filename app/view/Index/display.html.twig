@@ -6,37 +6,38 @@
 
 {% block content %}
 
-{# <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Upload your meme</a>
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-
- #}
+    <form method="post" enctype="multipart/form-data">
+      <div class="modal-content">
 
 
 
+          Select image to upload:
+          <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+          
+          <input type="text" name="text-top" id="text-top" placeholder="Your top text"/>
+          <input type="text" name="text-bottom" id="text-bottom" placeholder="Your bottom text"/>
+          <img id="output"/>
+        
+
+      </div>
+      <div class="modal-footer">
+        <input class=" modal-action modal-close waves-effect waves-green btn-flat" type="submit" value="Upload Image" name="submit">
+      </div>
+    </form>
+</div>
 
 
 
-<form method="post" enctype="multipart/form-data">
-        Select image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
-        <input type="submit" value="Upload Image" name="submit">
-</form>
 
-<img id="output"/>
+
 
 {% for meme in memes %}
 
-<img class="activator img-cards" src="img/{{ meme.gal_image }}">
+<a href="#modal1" class="modal-trigger" ><img class="activator img-cards gallery" src="img/{{ meme.gal_image }}"></a>
 
 {% endfor %}
 
