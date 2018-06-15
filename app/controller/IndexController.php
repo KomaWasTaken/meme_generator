@@ -8,11 +8,32 @@ class IndexController extends Controller {
    
     $uploadOk = 1;
     
-    // Check if image file is a actual image or fake image
+        
     if(isset($_POST["submit"])) {
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if ($imageFileType == "jpg" OR $imageFileType == "jpeg"){
+            $jpg_image = imagecreatefromjpeg($_FILES["fileToUpload"]["tmp_name"]);
+            $white = imagecolorallocate($jpg_image, 255, 255, 255);
+            $font_path = 'arial.ttf';
+            $text = $_POST['text-top'];
+            imagettftext($jpg_image, 25, 0, 75, 300, $white, $font_path, $text);
+            imagejpeg($jpg_image, $target_file);
+            imagedestroy($jpg_image); 
+            echo($_FILES["fileToUpload"]["name"]);
+        }
+        else if($imageFileType=="png"){
+            $png_image = imagecreatefrompng($_FILES["fileToUpload"]["tmp_name"]);
+            $white = imagecolorallocate($png_image, 255, 255, 255);
+            $font_path = 'arial.ttf';
+            $text = $_POST['text-top'];
+            imagettftext($png_image, 25, 0, 75, 300, $white, $font_path, $text);
+            imagepng($png_image, $target_file);
+            imagedestroy($png_image); 
+            echo($_FILES["fileToUpload"]["name"]); 
+        }
+
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
@@ -21,11 +42,6 @@ class IndexController extends Controller {
             $uploadOk = 0;
         }
     
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
@@ -41,25 +57,9 @@ class IndexController extends Controller {
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
+    }         
+    
 }
-    
-    /* header("Content-Type: image/png");
-    $im = @imagecreate(110, 20)
-        or die("Impossible d'initialiser la bibliothèque GD");
-    $background_color = imagecolorallocate($im, 0, 0, 0);
-    $text_color = imagecolorallocate($im, 233, 14, 91);
-    imagestring($im, 1, 5, 5,  "A Simple Text String", $text_color);
-    imagepng($im);
-    imagedestroy($im);
-    
-    print_r($_FILES['fileToUpload']['name']);  */
     
 }
 
