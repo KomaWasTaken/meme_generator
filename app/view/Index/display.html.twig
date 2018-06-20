@@ -30,9 +30,11 @@
     </form>
 </div>
 
+{% for urls in url %}
 
+<img src="uploads/{{urls.mem_image}}" alt="Votre image">
 
-
+{% endfor %}
 
 
 {% for meme in memes %}
