@@ -25,10 +25,17 @@ class Gallery extends Model {
 
    }
 
-   /* public static function getUploads() {
+   public static function getUploads() {
+        $uploaded = time() . basename($_FILES["fileToUpload"]["name"]);
         $db = Database::getInstance();
-        $sql = "INSERT INTO ";
-        $stmt = $db->query($sql);
+        $sql = "INSERT INTO meme_genere (mem_image) VALUES (:nom)";        
+        $stmt = $db->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        return $stmt->fetchAll(); */
+        $stmt->bindValue(':nom', $uploaded, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+        
+        
+        }
+        
 }

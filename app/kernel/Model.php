@@ -9,8 +9,8 @@ $imageFileType = array('png','jpg','jpeg','PNG','JPG','JPEG');
 if(isset($_FILES["fileToUpload"]))  {      
 
     $filename = $_FILES["fileToUpload"]['name'];    
-    $target_file = $target_dir . time() . basename($_FILES["fileToUpload"]["name"]); /* Renvoie le nom du fichier avec l'heure d'upload */
-    
+    $uploaded = time() . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $uploaded; /* Renvoie le nom du fichier avec l'heure d'upload */
 
     $pos = strrpos($filename, '.'); //Récupère la première apparition d'un "." dans $filename
     $ext = substr($filename, $pos+1); //Avance d'1 dans la chaîne de caractère pour récupérer ce qu'il y a après le "." (extension)
@@ -91,6 +91,7 @@ if(isset($_FILES["fileToUpload"]))  {
                 imagejpeg($image, $target_file);
                 imagepng($image, $target_file);
                 imagedestroy($image); 
+                
 
             }
             

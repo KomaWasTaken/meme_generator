@@ -4,9 +4,9 @@ class IndexController extends Controller {
 
     public function verifUpload(){
 
-   
-    $uploadOk = 1;
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if(isset($_FILES["fileToUpload"]))  {      
+        $uploadOk = 1;
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
                 if($check !== false) {
                     echo "File is an image - " . $check["mime"] . ".";
@@ -29,11 +29,13 @@ class IndexController extends Controller {
             // if everything is ok, try to upload file
             }         
         }
+    }
 
     public function display() {
         $memes = Gallery::getMemes();
         $verif = IndexController::verifUpload();
         $create = Gallery::createImages();
+        $insert = Gallery::getUploads();
 
         $template = $this->twig->loadTemplate('/Index/display.html.twig');
         echo $template->render(array(
