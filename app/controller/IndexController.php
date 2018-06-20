@@ -10,7 +10,7 @@ class IndexController extends Controller {
     $imageFileType = array('png','jpg','jpeg','PNG','JPG','JPEG');
     if(isset($_FILES["fileToUpload"]))  {      
         $filename = $_FILES["fileToUpload"]['name'];    
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $target_file = $target_dir . time() . basename($_FILES["fileToUpload"]["name"]); /* Renvoie le nom du fichier avec l'heure d'upload */
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
         $pos = strrpos($filename, '.'); //Récupère la première apparition d'un "." dans $filename
