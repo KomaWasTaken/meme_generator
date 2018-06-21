@@ -12,10 +12,14 @@
         <title>{% block title %}Meme Generator{% endblock %}</title>
     </head>
     
-    <body>
-       <header>
-          {% include 'Layout/nav.html.twig'%}  
-       </header>
+    <body class="bgcolor2">
+        <header class="bgcolor1">
+            {% include 'Layout/nav.html.twig'%}  
+                <div class="container  jcbetween flex">
+                   <a href="index.php"> <img src="img/logo.png" alt="logo" class="img_resize"></a>
+                    <img src="img/rouages.png" alt="rouages" class="img_resize">
+            </div>
+        </header>
         
         <main>
             {% block content %}{% endblock %}

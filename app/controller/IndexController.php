@@ -12,7 +12,7 @@ class IndexController extends Controller {
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     
                     if($check !== false) {
-                        echo "File is an image - " . $check["mime"] . ".";
+                        /* echo "File is an image - " . $check["mime"] . "."; */
                         $uploadOk = 1;
                         $upload = Gallery::getUploads();
 
@@ -30,10 +30,20 @@ class IndexController extends Controller {
                     $uploadOk = 0;
                 }
                 // Allow certain file formats
+
+                $allowed = array('png','jpg','jpeg','PNG','JPG','JPEG');
+                $nomImage = $_FILES['fileToUpload']['name'];
+                $ext = pathinfo($nomImage, PATHINFO_EXTENSION);
+                if(!in_array($ext, $allowed) ){
+                    echo "Merci de choisir une image au format .jpg ou .png";
+                    
+                }
+
+                
     
                 // Check if $uploadOk is set to 0 by an error
                 if ($uploadOk == 0) {
-                    echo "Sorry, your file was not uploaded.";
+                    echo "Désolé, votre image n'a pas été uploadée";
                 // if everything is ok, try to upload file
                 }
                 

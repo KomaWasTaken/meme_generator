@@ -1,0 +1,41 @@
+
+
+/* ------------- Fonts ------------- */
+
+
+
+
+/* ------------- Couleurs ------------- */
+        .color1{color:#222222;} /* noir */
+        .color2{color:#fff;} /* blanc */
+
+
+        .bgcolor1{background-color:#222222;} /* noir */
+        .bgcolor2{background-color: #353535 !important;} /* gris foncé */
+
+/* ------------- Génériques ------------- */
+
+        .flex{display: flex;}
+        .jcbetween{justify-content: space-between;}
+
+
+/* ------------- Heights ------------- */
+
+        .h300p{height:300px;}
+
+
+/* ------------- Widths ------------- */
+
+        .w300p{width:300px;}
+
+
+
+/* ------------- Spécifiques ------------- */
+
+        .img_resize{max-width: 150px;
+        max-height: 150px;}
+
+        .meme_resize{max-width: 300px;
+                max-height: 300px;}
+
+        input{color:white;}

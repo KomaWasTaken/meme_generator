@@ -6,48 +6,89 @@
 
 {% block content %}
 
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Upload your meme</a>
+
+
+
+
+<section class="container">
+  <div class="row">
+    <div class="center-align">
+      <h2 class="color2">Gallerie</h2>
+      {% for meme in memes %}
+
+      <a href="#modal1" class="modal-trigger" ><img class="activator img-cards gallery responsive-img img_resize" src="img/{{ meme.gal_image }}"></a>
+
+      {% endfor %}
+</section>
+
+
+      <section>
+        <div class="center-align">
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Créez votre propre meme !</a>
+        </div>
+
+
+        <div class="row">
+            <div class="center-align">
+
+            {% for urls in url %}
+
+            <img src="uploads/{{urls.mem_image}}" alt="Votre image" class="meme_resize">
+            <p class="color2">Lien vers votre image : </br>
+            http://localhost/meme_generator/uploads/{{ urls.mem_image }}</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+
+  
+
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal bgcolor1">
     <form method="post" enctype="multipart/form-data">
       <div class="modal-content">
 
 
 
-          Select image to upload:
-          <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
-          
-          <input type="text" name="text-top" id="text-top" placeholder="Your top text"/>
-          <input type="text" name="text-bottom" id="text-bottom" placeholder="Your bottom text"/>
+          <input type="text" name="text-top" id="text-top" placeholder="Texte en haut"/>
+          <input type="text" name="text-bottom" id="text-bottom" placeholder="Texte en bas"/>
           <img id="output"/>
         
 
       </div>
-      <div class="modal-footer">
-        <input class=" modal-action modal-close waves-effect waves-green btn-flat" type="submit" value="Upload Image" name="submit">
+      <div class="modal-footer bgcolor2">
+        <input class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" value="Go !" name="submit">
       </div>
     </form>
 </div>
 
-{% for urls in url %}
-
-<img src="uploads/{{urls.mem_image}}" alt="Votre image">
-<p>http://localhost/meme_generator/uploads/{{ urls.mem_image }}</p>
-
-{% endfor %}
+<div id="modal2" class="modal bgcolor1">
+    <form method="post" enctype="multipart/form-data">
+      <div class="modal-content">
 
 
-{% for meme in memes %}
 
-<a href="#modal1" class="modal-trigger" ><img class="activator img-cards gallery" src="img/{{ meme.gal_image }}"></a>
+          <p class="color2">Sélectionnez une image :</p> 
+          <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+          
+          <input type="text" name="text-top" id="text-top" placeholder="Texte en haut"/>
+          <input type="text" name="text-bottom" id="text-bottom" placeholder="Texte en bas"/>
+          <img id="output"/>
+        
 
-{% endfor %}
-
+      </div>
+      <div class="modal-footer bgcolor2">
+        <input class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" value="Go !" name="submit">
+      </div>
+    </form>
+</div>
+</section>
 {% endblock %}
 
- 
-           
-    
 
-    
+
+
