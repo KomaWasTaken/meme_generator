@@ -3,7 +3,8 @@
 class IndexController extends Controller {
 
     public function display() {
-
+        $template = $this->twig->loadTemplate('/Index/display.html.twig');
+        $upload = '';
     
     
         if(isset($_FILES["fileToUpload"]))  {      
@@ -14,6 +15,10 @@ class IndexController extends Controller {
                         echo "File is an image - " . $check["mime"] . ".";
                         $uploadOk = 1;
                         $upload = Gallery::getUploads();
+
+                        
+
+                        
                     } else {
                         echo "File is not an image.";
                         $uploadOk = 0;
@@ -30,15 +35,17 @@ class IndexController extends Controller {
                 if ($uploadOk == 0) {
                     echo "Sorry, your file was not uploaded.";
                 // if everything is ok, try to upload file
-                }         
+                }
+                
             }
-            
+        
+
         
 
         $memes = Gallery::getMemes();        
         $displayUrl = Gallery::displayUrl();
 
-        $template = $this->twig->loadTemplate('/Index/display.html.twig');
+
         echo $template->render(array(
             'memes'  => $memes,
             'url' => $displayUrl,
