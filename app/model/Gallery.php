@@ -34,6 +34,8 @@ class Gallery extends Model {
         
         $filename = $_FILES["fileToUpload"]['name'];    
         $uploaded = time() . basename($_FILES["fileToUpload"]["name"]);
+        $uploaded = str_replace(" ", "_", $uploaded);
+        
         $target_file = $target_dir . $uploaded; /* Renvoie le nom du fichier avec l'heure d'upload */
         
         $pos = strrpos($filename, '.'); //Récupère la première apparition d'un "." dans $filename
@@ -132,11 +134,12 @@ class Gallery extends Model {
         public static function displayUrl(){
 
                 $db = Database::getInstance();
-                $sql = "SELECT mem_image FROM meme_genere";
+                $sql = "SELECT * FROM meme_genere ORDER BY id_meme_genere DESC LIMIT 1";
                 $stmt = $db->query($sql);
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 return $stmt->fetchAll();
         }
+        
 }
 
 
