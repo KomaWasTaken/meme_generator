@@ -43,7 +43,8 @@ body{font-size:62.5%;}
 
 
 /* ------------- Spécifiques ------------- */
-.z999{left:-9999px;}
+
+        .z999{left:-9999px;}
 
         .img_resize{max-width: 200px;
         max-height: 200px;}
@@ -53,5 +54,3 @@ body{font-size:62.5%;}
 
         input{color:white;}
         nav{box-shadow: none;}
-        .noborder{border:none;}
-        /* .hidden{display:none;} */
