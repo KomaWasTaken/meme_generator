@@ -13,34 +13,43 @@
 <section class="container">
   <div class="row">
     <div class="center-align">
-      <h2 class="color2">Gallerie</h2>
+      <h2 id="gallerie" class="color2">Gallerie</h2>
       {% for meme in memes %}
 
       <a href="#modal1" class="modal-trigger" ><img class="activator img-cards gallery responsive-img img_resize" src="img/{{ meme.gal_image }}"></a>
 
       {% endfor %}
+      </div>
+    </div>
 </section>
 
 
-      <section>
-        <div class="center-align">
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Créez votre propre meme !</a>
-        </div>
+<section>
+  <div class="center-align">
+      <h2 id="upload" class="color2">Upload</h2>
+
+    <a href="#modal2" class="waves-effect waves-light btn modal-trigger bgcolor3 mbot30p" >Créez votre propre meme !</a>
+  </div>
 
 
-        <div class="row">
-            <div class="center-align">
+  <div class="row">
+    <div class="center-align">
 
-            {% for urls in url %}
+      {% for urls in url %}
 
-            <img src="uploads/{{urls.mem_image}}" alt="Votre image" class="meme_resize">
-            <p class="color2">Lien vers votre image : </br>
-            http://localhost/meme_generator/uploads/{{ urls.mem_image }}</p>
-          </div>
-        </div>
+      <img src="uploads/{{urls.mem_image}}" alt="Votre image" class="meme_resize">
+      <div>
+        <p class="color2 col s12 fs24">Lien vers votre image :
+          <input id="lienImage" class="noborder absolute z999" type="text" value="http://localhost/meme_generator/uploads/{{ urls.mem_image }}">
+        </p>
+      <button class="waves-effect waves-light btn bgcolor3" id="buttonCopy">Copiez l'url</button>
+    </div> 
     </div>
   </div>
 </section>
+    
+  
+
 {% endfor %}
 
 
@@ -66,28 +75,36 @@
     </form>
 </div>
 
+<!-- Modal avec upload -->
+
 <div id="modal2" class="modal bgcolor1">
     <form method="post" enctype="multipart/form-data">
-      <div class="modal-content">
+        <div class="modal-content">
 
 
 
-          <p class="color2">Sélectionnez une image :</p> 
-          <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+            <p class="color2">Sélectionnez une image :</p> 
+            <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+            
+            <input type="text" name="text-top" id="text-top" placeholder="Texte en haut"/>
+            <input type="text" name="text-bottom" id="text-bottom" placeholder="Texte en bas"/>
+            <img id="output"/>
           
-          <input type="text" name="text-top" id="text-top" placeholder="Texte en haut"/>
-          <input type="text" name="text-bottom" id="text-bottom" placeholder="Texte en bas"/>
-          <img id="output"/>
-        
 
-      </div>
-      <div class="modal-footer bgcolor2">
-        <input class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" value="Go !" name="submit">
-      </div>
+        </div>
+        <div class="modal-footer bgcolor2">
+          <input class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" value="Go !" name="submit">
+        </div>
     </form>
 </div>
 </section>
+
+<div class="center-align">
+
+    <h2 id="historique" class="color2">Historique</h2>
+  </div>
 {% endblock %}
+
 
 
 
